@@ -1,5 +1,7 @@
 const express = require("express")
 const path = require("path")
+//const logger = require("./middleware/logger")
+const members = require("./Members")
 
 const app = express()
 
@@ -9,44 +11,30 @@ const app = express()
     //not an ideal way to load html files, because we'd have to write each route manually and separatelly for every single page
 //})
 
+// *********** MIDDLEWARE ***********
+
+// creating a simple logging middleware function
+// every time we make a request, this middleware is gonna run
+
+
+// *********** INIT MIDDLEWARE ***********
+// app.use(logger)
+
+
 // *********** CREATING A ROUTE ***********
 
-const users = [
-  {
-    id: 1,
-    name: "Leanne Graham",
-    email: "Sincere@april.biz",
-    status: "active"
-  },
-  {
-    id: 2,
-    name: "Ervin Howell",
-    email: "Shanna@melissa.tv",
-    status: "active"
-  },
-  {
-    id: 3,
-    name: "Clementine Bauch",
-    email: "Nathan@yesenia.net",
-    status: "active"
-  }
- ,
-]
+// get all members
+app.get("/api/members", (req, res) => res.json(members))
+//we don't need to do JSON.stringify() even though these are JS objects, because express takes care of that
 
-app.get("/api/members", (req, res) => {
-    res.json()
-
-    JSON.stringify
-    //we don't need to do JSON.stringify() even though these are JS objects, because express takes care of that
-
-
-
-
-
-    
-
-
+// get single member
+app.get("api/members/:id", (req, res) => {
+  res.send(req.params.id)
+  //res.json(members.filter(member => member.id === parseInt(req.params.id)))
 })
+//getting a member by their id
+//id is a URL parameter
+
 
 
 
