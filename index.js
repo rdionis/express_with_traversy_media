@@ -20,7 +20,7 @@ const app = express()
 // app.use(logger)
 // Body Parser Middleware
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: false}))
 
 
 // *********** SET STATIC SERVER ***********
@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Members API routes
 app.use("/api/members", require("./routes/api/members"))
+
 
 // *********** ASSIGNING THE PORT TO A VARIABLE ***********
 
