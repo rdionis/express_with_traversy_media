@@ -46,8 +46,7 @@ router.post("/", (req, res) => {
     !newMember.name || !newMember.email
     ? res.status(400).json({msg: "Please include name and email"})
     : (members.push(newMember)) && res.json(members)
-    
-
+    // && res.redirect("/")
 })
 
 // *********** UPDATING A MEMBER ***********

@@ -2,6 +2,7 @@ const express = require("express")
 const path = require("path")
 const exphbs = require("express-handlebars")
 //const logger = require("./middleware/logger")
+const members = require("./Members")
 
 const app = express()
 
@@ -34,7 +35,10 @@ app.use(express.urlencoded({extended: false}))
 
 // HOMEPAGE ROUTE
 app.get("/", (req, res) => res.render("index", {
-  title: "Members App"
+  title: "Members App",
+  members
+  // because variable and key have the same name, we just need one word
+  // this equals members: members
 }))
 
 // SET STATIC SERVER
