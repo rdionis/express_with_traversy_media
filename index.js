@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const exphbs = require("express-handlebars")
 //const logger = require("./middleware/logger")
 
 const app = express()
@@ -18,14 +19,29 @@ const app = express()
 
 // *********** INIT MIDDLEWARE ***********
 // app.use(logger)
-// Body Parser Middleware
+
+
+// HANDLEBARS MIDDLEWARE
+// we need the two following lines in order to use handlebars
+app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
+app.set("view engine", "handlebars")
+
+
+
+// BODY PARSER MIDDLEWARE
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+// HOMEPAGE ROUTE
+app.get("/", (req, res) => res.render("index", {
+  title: "Members App"
+}))
 
-// *********** SET STATIC SERVER ***********
-
+// SET STATIC SERVER
 app.use(express.static(path.join(__dirname, "public")))
+
+
+
 
 
 // Members API routes
